@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>导航拖拽</title>
+</head>
+<style type="text/css" media="screen">
+    *{
+        margin:0;
+        padding:0;
+    }
+    #photo{
+        width: 640px;
+        height: 400px;
+        margin:50px auto;
+        border: 2px solid #dadada;
+        border-radius:5px;
+    }
+    div ul{
+        position:relative;
+    }
+    div ul li{
+        width: 200px;
+        height: 120px;
+        display: inline-block;
+        list-style-type: none;
+        float: left;
+        margin:10px 0 0 10px;
+    }
+    div ul li img{
+        width: 200px;
+        height: 120px;
+        border-radius:5px;
+    }
+</style>
+<body>
+    <div id="photo">
+        <ul>
+            <li><img src="image/1.png" alt=""></li>
+            <li><img src="image/2.png" alt=""></li>
+            <li><img src="image/3.png" alt=""></li>
+            <li><img src="image/4.png" alt=""></li>
+            <li><img src="image/5.png" alt=""></li>
+            <li><img src="image/6.png" alt=""></li>
+            <li><img src="image/7.png" alt=""></li>
+            <li><img src="image/8.png" alt=""></li>
+            <li><img src="image/9.png" alt=""></li>
+        </ul>
+    </div>
+    <script type="text/javascript">
+        /*
+        1.通过浮动布局来获取li元素位置,转为定位布局
+            1.1 获取所有li元素
+            1.2 将所有li元素的位置存在一个数组中
+            1.3 用定位布局实现浮动布局的效果
+        2.li元素实现拖拽
+            2.1 获取点击时所选元素的位置
+            2.2 获取点击时鼠标的位置
+            2.3 获取鼠标移动时的位置
+            2.4 计算所选元素新的位置(随鼠标移动的位置)
+        3.碰撞检测
+            3.1 碰撞原理
+            3.2 碰撞时样式的改变
+        4.鼠标抬起
+            4.1 碰撞成功则互换位置
+            4.2 不成功就回到原来的位置
+         */
+        
+        //浮动布局转为定位布局
+        var liList=document.getElementsByTagName("li"),
+            photo=document.getElementById("photo"),
+            l=liList.length,
+            liArray=[],
+            s=1;
+        for(var i=0;i<l;i++){
+            // console.log(liList[i].offsetLeft,liList[i].offsetTop)
+            liArray.push([liList[i].offsetLeft,liList[i].offsetTop]);
+            // console.log(liArray[i])
+        }
+        for(var j=0;j<l;j++){
+            liList[j].style.position="absolute";
+            liList[j].style.left=liArray[j][0]+"px";
+            liList[j].style.top=liArray[j][1]+"px";
+            liList[j].style.margin=0;
+        }
+
+        //实现拖拽
+        for(var n=0;n<l;n++)
+        {
+            liList[n].onmousedown=function(){
+                var one=this,
+                    oneleft=one.offsetLeft,         //获取点击时所选元素的位置
+                    onetop=one.offsetTop,
+                    event=event||window.event,      //兼容
+                    x0=event.clientX,               //获取点击时鼠标的位置
+                    y0=event.clientY,
+                    goalLi='';
+                    one.style.zIndex=s++;
+                // console.log(oneleft,onetop)
+                one.onmousemove=function(){
+                    var event=event||window.event,
+                        x1=event.clientX,
+                        y1=event.clientY;
+                    var xNewLeft=oneleft+x1-x0,    //移动时的位置
+                        yNewTop=onetop+y1-y0;
+                    one.style.left=xNewLeft+"px";
+                    one.style.top=yNewTop+"px";       
+                    //碰撞检测
+                    var xR=x1-photo.offsetLeft,
+                        yR=y1-photo.offsetTop;
+                    // console.log(xR,yR)
+                    for(var m=0;m<l;m++){
+                        liList[m].style.transform="";       //还原样式
+                        liList[m].style.boxShadow="";
+                        one.style.opacity="1.0";
+                        //碰撞检测判断
+                        if(xR>liList[m].offsetLeft&&xR<liList[m].offsetLeft+200
+                            &&yR>liList[m].offsetTop&&yR<liList[m].offsetTop+120
+                            &&liList[m]!=one
+                        )
+                        {
+                            liList[m].style.transform="scale(1.05)";
+                            liList[m].style.boxShadow="0px 0px 5px #ff9900";
+                            one.style.opacity="0.8";
+                            goalLi=liList[m];
+                            // console.log(goalLi)
+                            return;
+                        }
+                    }
+                }
+                //鼠标抬起
+                one.onmouseup=function(){
+                    if(goalLi){
+                        one.style.left=goalLi.offsetLeft+"px";
+                        one.style.top=goalLi.offsetTop+"px";
+                        goalLi.style.left=oneleft+"px";
+                        goalLi.style.top=onetop+"px";
+                        goalLi.style.transform="";
+                        goalLi.style.boxShadow="";
+                        one.style.opacity="1.0";
+                    }
+                    else{
+                        one.style.left=oneleft+"px";
+                        one.style.top=onetop+"px";
+                    }               
+                    one.onmousemove="";
+                }
+                return false;                           //清楚图片默认拖拽
+            }
+        }
+    </script>
+</body>
+</html>

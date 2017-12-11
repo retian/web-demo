@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <title>css3鼠标划入特效</title>
+    <style type="text/css" media="screen">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #wrap ul{
+            list-style-type:none;
+            height: 560px;
+			/*弹性盒子的方法*/
+           /* display: flex;  
+            flex-wrap:wrap;
+            justify-content:space-around;
+            align-content:space-around; */
+        }
+        #wrap ul li{
+            width: 260px;
+            height: 260px;
+            /*background:yellow;*/
+            float:left;
+            margin:10px;
+			perspective:800px;/*镜深*/
+			transform-style:preserve-3d;/*3d空间*/
+			overflow:hidden;
+        }
+        #wrap{
+            width: 840px;
+            height: 560px;
+            /* background:red; */
+            margin:100px auto;
+        }
+		.text-box{
+			width:240px;
+			height:240px;
+			background: url("images/lineBg.png");
+			padding:10px;
+			transform:translateY(-264px) rotate(130deg) rotateY(-270deg);
+			opacity:0;
+		}
+		.text-box a{
+			width:240px;
+			height:240px;
+			background:#fff;
+			display:block;	
+			text-decoration:none;
+		}
+		#wrap ul li:hover .text-box{
+			transform:translateY(-264px) rotate(0deg) rotateY(0deg);
+			transition:1.5s;
+			opacity:1;
+		}
+    </style>
+</head>
+<body>
+	<!--
+		思路
+		完整的前端知识体系框架来支撑
+		秘诀:1.整体入手
+			 2.局部入手
+			 3.观察位置
+			 4.添加样式
+		
+		hover
+			transtion 过渡动画
+	-->
+    <div id="wrap">
+        <ul>
+            <li>
+				<a href="http://www.baidu.com">
+					<img src="images/2.jpg" alt="">
+				</a>
+				<div class="text-box">
+					<a href="#">思路完整的前端知识体系框架来支撑
+					</a>
+				</div>
+            </li>
+            <li>
+				<a href="http://www.baidu.com">
+					<img src="images/3.jpg" alt="">
+				</a>
+				<div class="text-box">
+					<a href="#">思路完整的前端知识体系框架来支撑
+					</a>
+				</div>
+            </li>
+            <li>
+				<a href="http://www.baidu.com">
+					<img src="images/4.jpg" alt="">
+				</a>
+				<div class="text-box">
+					<a href="#">思路完整的前端知识体系框架来支撑
+					</a>
+				</div>
+            </li>
+            <li>
+				<a href="http://www.baidu.com">
+					<img src="images/5.jpg" alt="">
+				</a>
+				<div class="text-box">
+					<a href="#">思路完整的前端知识体系框架来支撑
+					</a>
+				</div>
+            </li>
+            <li>
+				<a href="http://www.baidu.com">
+					<img src="images/8.jpg" alt="">
+				</a>
+				<div class="text-box">
+					<a href="#">思路完整的前端知识体系框架来支撑
+					</a>
+				</div>
+            </li>
+            <li>
+				<a href="http://www.baidu.com">
+					<img src="images/7.jpg" alt="">
+				</a>
+				<div class="text-box">
+					<a href="#">思路完整的前端知识体系框架来支撑
+					</a>
+				</div>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

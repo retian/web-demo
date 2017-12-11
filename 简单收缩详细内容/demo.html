@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>demo</title>
+        <style type="text/css" media="screen">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #question{
+            width: 100%;
+            background: #fff;
+            padding-top:50px;
+            /* background-color:#b0f0d0; */
+        }
+        .common-problems{
+            text-align:center;
+        }
+        .common-problems h2{
+            font-size:38px;
+            font-weight:100;
+            line-height:70px;
+        }
+        .common-problems p{
+            color:#999;
+        }
+        .question-box{
+            width: 940px;
+            border:1px solid #999;
+            margin:50px auto;
+            padding:0 80px;
+        }
+        .question-box ul{
+            list-style-type:none;
+        }
+        .question-box ul li .question-head{
+            border-bottom:1px solid #666;
+            line-height:80px;
+        }
+        .question-box ul li .question-head:after{
+            content:"";
+            display: block;
+            clear:both;
+        }
+        .question-box ul li:last-child .question-head{
+            border:none;
+        }
+        .left{
+            font-size:18px;
+            float:left;
+        }
+        .right{
+            font-size:28px;
+            float:right;
+        }
+        .question-content{
+            display: none;
+            padding: 30px 0;
+        }
+        .question-content p{
+            color:#999;
+            font-size:18px;
+        }
+        </style>
+    </head>
+    <body>
+        <div id="question">
+            <div class="common-problems">
+                <h2>常见问题</h2>
+                <p>您所关心的，我们都将为您解答</p>
+            </div>
+            <div class="question-box">
+                <ul>
+                    <li>
+                        <div class="question-head">
+                            <span class="left">1.猪八戒网怎么解决我的需求</span>
+                            <span class="right">+</span>
+                        </div>
+                        <div class="question-content">
+                            <p>猪八戒网是服务众包平台，由原《重庆晚报》记者朱明跃创办于2006年，服务交易品类涵盖创意设计、网站建设、网络营销、文案策划、生活服务等多种行业。猪八戒网有</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="question-head">
+                            <span class="left">2.APP大概需要多张时间完成上线？</span>
+                            <span class="right">+</span>
+                        </div>
+                        <div class="question-content">
+                            <p>
+                                猪八戒网是服务众包平台，由原《重庆晚报》记者朱明跃创办于2006年，服务交易品类涵盖创意设计、网站建设、网络营销、文案策划、生活服务等多种行业。猪八戒网有
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="question-head">
+                            <span class="left">1.猪八戒网怎么解决我的需求</span>
+                            <span class="right">+</span>
+                        </div>
+                        <div class="question-content">
+                            <p>
+                                猪八戒网是服务众包平台，由原《重庆晚报》记者朱明跃创办于2006年，服务交易品类涵盖创意设计、网站建设、网络营销、文案策划、生活服务等多种行业。猪八戒网有
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="question-head">
+                            <span class="left">1.猪八戒网怎么解决我的需求</span>
+                            <span class="right">+</span>
+                        </div>
+                        <div class="question-content">
+                            <p>
+                            猪八戒网是服务众包平台，由原《重庆晚报》记者朱明跃创办于2006年，服务交易品类涵盖创意设计、网站建设、网络营销、文案策划、生活服务等多种行业。猪八戒网有
+                            </p>
+                            <p>1</p>
+                            <p>2</p>
+                            <p>3</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="question-head">
+                            <span class="left">1.猪八戒网怎么解决我的需求</span>
+                            <span class="right">+</span>
+                        </div>
+                        <div class="question-content">
+                            <p>
+                            猪八戒网是服务众包平台，由原《重庆晚报》记者朱明跃创办于2006年，服务交易品类涵盖创意设计、网站建设、网络营销、文案策划、生活服务等多种行业。猪八戒网有
+                            </p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript">
+         var arr = [];
+         $("li").each(function(){
+            arr.push(true);
+         });
+         $("li").click(function(){
+            var index = $(this).index();
+            if (arr[index])
+            {
+                $(this).find('.right').html("一");
+                $(this).find("span").css({'color':'#00ccff'});
+                arr[index] = false;
+            }
+            else{
+                $(this).find('.right').html("+");
+                $(this).find('span').css({'color':'#000'});
+                arr[index] = true;
+            }
+            $(this).find(".question-content").slideToggle();
+         });
+    </script>
+</html>

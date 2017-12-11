@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>爱心日蚀</title>
+</head>
+<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	html{
+		height: 100%;
+	}
+	body{
+		position: relative;
+		height: inherit; 	/*继承*/
+		background-color: #368;
+		animation:bgcolor 8s infinite; 
+	}
+	#box{
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		margin:auto;
+		width: 200px;
+		height: 180px;
+	}
+	#box .shape:before,#box .shape:after{
+		position: absolute;
+		content: "";
+		width: 100px;
+		height: 150px;
+		background-color: red;
+		border-radius:50px 50px 0px 0px;
+	}
+	#box .shape:before{
+		left:32px;
+		transform: rotate(-45deg);
+	}
+	#box .shape:after{
+		left:68px;
+		transform: rotate(45deg);
+	}
+	#box .shape:last-of-type{
+		position: absolute;
+		transform: translateX(200px);
+		animation:tanslate 8s infinite;
+	}
+	#box .shape:last-of-type:before,#box .shape:last-of-type:after{
+		animation:bgcolor 8s infinite; 
+	}
+	@keyframes bgcolor{
+		0%{
+			background-color: #368;
+		}
+		50%{
+			background-color: black;
+		}
+		100%{
+			background-color: #368;
+		}
+	}
+	@keyframes tanslate{
+		0%{
+			transform: translateX(200px);
+		}
+		50%{
+			transform: translateX(0px);
+		}
+		100%{
+			transform: translateX(-200px);
+		}
+	}
+</style>
+<body>
+	<div id="box">
+		<div class="shape"></div>
+		<div class="shape"></div>
+	</div>
+</body>
+</html>

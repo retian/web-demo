@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>3d</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		body,html{
+			width: 100%;
+			height: 100%;
+		}
+		.box1{
+			/*margin: auto;*/
+			/*top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;*/
+			top: 200px;
+			left: 200px;
+			width: 200px;
+			height: 200px;
+			position: absolute;
+			-webkit-transform-style:preserve-3d;
+			/*-webkit-tran-sform: rotateX(0deg) rotateY(75deg) rotateZ(35deg);*/
+			-webkit-animation: sample1 5s linear infinite alternate;
+		}
+		.box1 .a{
+			width: 200px;
+			height: 200px;
+			position: absolute;
+			top: 0;
+			left: 0;
+			color: #fff;
+			font-size: 2em;
+			text-align: center;
+			line-height: 100px;
+		}
+		.box1 .a:nth-child(1){
+			background: rgba(255,0,0,.5);
+			-webkit-transform: rotateX(90deg) translateZ(100px);
+		}
+		.box1 .a:nth-child(2){
+			background: rgba(255,255,0,.5);
+			-webkit-transform:rotateX(-90deg) translateZ(100px);
+		}
+		.box1 .a:nth-child(3){
+			background: rgba(255,0,255,.5);
+			-webkit-transform:rotateY(90deg) translateZ(100px);
+		}
+		.box1 .a:nth-child(4){
+			background: rgba(0,255,0,.5);
+			-webkit-transform:rotateY(-90deg) translateZ(100px);
+		}
+		.box1 .a:nth-child(5){
+			background: rgba(0,0,255,.5);
+			-webkit-transform:translateZ(100px);
+		}
+		.box1 .a:nth-child(6){
+			background: rgba(0,255,255,.5);
+			-webkit-transform:translateZ(-100px);
+		}
+
+		.box2{
+			margin: auto;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			width: 100px;
+			height: 100px;
+			position: absolute;
+			-webkit-transform-style:preserve-3d;
+			-webkit-transform: rotateX(0deg) rotateY(-40deg) rotateZ(30deg);
+			-webkit-animation: sample2 2.5s ease-in infinite alternate;
+		}
+		.box2 .b{
+			width: 100px;
+			height: 100px;
+			position: absolute;
+			top: 0;
+			left: 0;
+			color: #fff;
+			font-size: 2em;
+			text-align: center;
+			line-height: 100px;
+		}
+		.box2 .b:nth-child(1){
+			background: rgba(255,0,0,.5);
+			-webkit-transform:rotateX(90deg) translateZ(50px);
+		}
+		.box2 .b:nth-child(2){
+			background: rgba(255,255,0,.5);
+			-webkit-transform:rotateX(-90deg) translateZ(50px);
+		}
+		.box2 .b:nth-child(3){
+			background: rgba(255,0,255,.5);
+			-webkit-transform:rotateY(90deg) translateZ(50px);
+		}
+		.box2 .b:nth-child(4){
+			background: rgba(0,255,0,.5);
+			-webkit-transform:rotateY(-90deg) translateZ(50px);
+		}
+		.box2 .b:nth-child(5){
+			background: rgba(0,0,255,.5);
+			-webkit-transform:translateZ(50px);
+		}
+		.box2 .b:nth-child(6){
+			background: rgba(0,255,255,.5);
+			-webkit-transform:translateZ(-50px);
+		}
+		@-webkit-keyframes sample1{
+			0% {
+				top: 100px;
+				left: 100px;
+				-webkit-transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+			}
+			25% {
+				/*left: 100px;*/
+				top: 300px;
+				-webkit-transform: rotateX(90deg) rotateY(90deg) rotateZ(90deg);
+			}
+			50% {
+				left: 300px;
+				/*top: 300px;*/
+				-webkit-transform: rotateX(180deg) rotateY(180deg) rotateZ(180deg);
+			}
+			75% {
+				top:100px;
+				/*left: 300px;*/
+				-webkit-transform: rotateX(270deg) rotateY(270deg) rotateZ(270deg);
+			}
+			100% {
+				top: 200px;
+				left: 200px;
+				-webkit-transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg);
+			}
+		}
+		@-webkit-keyframes sample2{
+			0% {
+				-webkit-transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+			}
+			25% {
+				-webkit-transform: rotateX(90deg) rotateY(90deg) rotateZ(90deg);
+			}
+			50% {
+				-webkit-transform: rotateX(180deg) rotateY(180deg) rotateZ(180deg);
+			}
+			75% {
+				-webkit-transform: rotateX(270deg) rotateY(270deg) rotateZ(270deg);
+			}
+			100% {
+				-webkit-transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg);
+			}
+		}
+		.box1:hover .a:nth-child(1){
+			-webkit-transform:rotateX(90deg) translateZ(200px);
+		}
+		.box1:hover .a:nth-child(2){
+			-webkit-transform:rotateX(-90deg) translateZ(200px);
+		}
+		.box1:hover .a:nth-child(3){
+			-webkit-transform:rotateY(90deg) translateZ(200px);
+		}
+		.box1:hover .a:nth-child(4){
+			-webkit-transform:rotateY(-90deg) translateZ(200px);
+		}
+		.box1:hover .a:nth-child(5){
+			-webkit-transform: translateZ(200px);
+		}
+		.box1:hover .a:nth-child(6){
+			-webkit-transform: translateZ(-200px);
+		}
+	</style>
+</head>
+<body>
+	<div class="box1">
+		<div class="a">top</div>
+		<div class="a">bottom</div>
+		<div class="a">right</div>
+		<div class="a">left</div>
+		<div class="a">face</div>
+		<div class="a">back</div>
+		<div class="box2">
+			<div class="b">top</div>
+			<div class="b">bottom</div>
+			<div class="b">right</div>
+			<div class="b">left</div>
+			<div class="b">face</div>
+			<div class="b">back</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>balloon</title>
+	<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	body{
+		overflow: hidden;
+		background-color: #ccc;
+	}
+	.balloon{
+		position: absolute;
+		width: 100px;
+		height: 100px;
+		background-color: #fafaf9;
+		border-radius: 100px 100px 44px 100px;
+		transform: rotate(45deg); 
+		/*css3盒子阴影*/
+		box-shadow: -6px -6px 80px -10px #873940 inset;
+	}
+	.balloon:after{
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		content: '';
+		border: 6px solid transparent;
+		border-right-color: #873940;
+		transform: rotate(45deg);
+		border-radius: 50%;
+	}
+	</style>
+</head>
+<body>
+	<!-- <div class="balloon"></div> -->
+	<script>
+		/*需求分析
+		1.动态生成dom节点 初始化
+			1 生成的数量
+			2 创建气球节点对象
+				1 createElement
+				2 添加类名 classList.add()
+				3 添加到body中
+			3 循环创建10个div
+				1 块级作用域
+				2 fragment文档片段
+			4 初始化气球集群
+				1 位置
+					1 纵向
+						top window Height
+					2 横向
+						随机 0-wW
+						伪随机数 Math.random() 0--1 包括0不包括1
+		2.气球向上移动
+			1 获取页面所有的balloon节点对象
+			2 循环所有节点 top 改变
+				元素top = 当前top - 动量
+			3 定时器
+				setInterval setTimeout requestAnimation
+			4 速度差异化
+				自定义属性来写
+			5 性能优化
+		3.用户点击气球 气球爆炸
+			1 点击事件
+				事件委托
+			2 删除dom
+			3 生成新气球
+				init循环利用
+			4 清除数组对应项
+		4.爆炸动画及项目完善
+			1 speed ++
+			2 width height --
+			3 减少到一定程度 节点移除
+			4 条件判断
+				清除定时器
+				删除节点
+				终止函数
+		*/
+		var wW=window.innerWidth;
+		var wH=window.innerHeight;
+		var bZ=100;
+		var timer;
+		var balloons=[]; //节点缓存池
+
+		init(10);
+		timer=setInterval(move,1000/30);
+		document.addEventListener('click',function(e){
+			if(e.target.className.toLowerCase()==='balloon'){
+				var ele=e.target;
+				// //删除节点
+				// ele.parentNode.removeChild(ele);
+				
+				ele.boom(function(){
+					this.parentNode.removeChild(this);
+				}.bind(ele));
+
+				init(1);
+				balloons.splice(balloons.lastIndexOf(ele),1);
+				//console.log(balloons)
+			}			
+		},false)
+		//气球动画组件   自定义方法  原型
+		Node.prototype.boom=function(cb){
+			//var that=this;  //词法作用域 上下文
+			var rotate=[30,80];
+			var index=0;
+			this.timer=setInterval(function(){ 	
+				//setInterval指向的是window
+				if(this.offsetWidth<10){
+					clearInterval(this.timer);
+					cb&&cb();
+					//this.parentNode.removeChild(this);
+					return false;
+				}
+				index++;
+				index%=2;
+				this.speed++;
+				this.style.width=this.offsetWidth-10+'px';
+				this.style.height=this.offsetHeight-10+'px';
+				this.style.top=this.offsetTop-this.speed+'px';
+				this.style.transform='rotate('+rotate[index]+'deg)'
+			}.bind(this),1000/30);
+		}
+		//初始化
+		function init(num){
+			 var fragment=document.createDocumentFragment();	
+			for(var i=0;i<num;i++){
+				var oBalloon=document.createElement('div');
+				var randomX=((Math.floor(Math.random()*wW)|0)-bZ); 
+				randomX=Math.abs(randomX);
+				oBalloon.classList.add('balloon');
+				//document.body.appendChild(oBalloon);  //doucement这种每一次都会重绘
+				oBalloon.style.top=wH+'px';
+				oBalloon.style.left=randomX+'px';
+				//dom节点对象自定义属性 speed
+				oBalloon.speed= ~~(Math.random()*8)+1;
+				balloons.push(oBalloon);
+				fragment.appendChild(oBalloon);
+				// console.log(randomX)
+			}
+			document.body.appendChild(fragment);
+		}
+
+		//移动模块
+		function move(){
+			//var balloons=document.querySelectorAll('.balloon');  //性能问题 改用全局变量或者缓存池方法
+			for(var i=0,len=balloons.length;i<len;i++){
+				balloons[i].style.top=balloons[i].offsetTop-balloons[i].speed+'px';
+			}
+		}
+	</script>
+</body>
+</html>
+<!--
+	for循环 没有块级作用域 会变量泄露
+
+	DOM原生方法
+	getElementById
+	getElementsByClassName
+
+	H5扩展DOM方法集合
+	querySelector	单个
+	querySelectorAll	集合
+
+	自定义属性
+	balloon{
+		style:{
+			width,
+			height
+		},
+		offsetTop,
+		offsetLeft,
+		className
+	}
+-->

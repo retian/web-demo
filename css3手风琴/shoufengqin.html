@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>手风琴</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		body,html{
+			width: 100%;
+			height: 100%;
+		}
+		body{
+			background: rgba(0,0,0,0.2);
+		}
+		img{
+			width: 640px;
+			height: 320px;
+			border: 1px solid white;
+		}
+		.box .b .pic{
+			float: left;
+			width: 200px;
+			height: 322px;
+			box-shadow: -20px 0px 50px 0px rgba(0,0,0,0.6);
+			transition: width 0.5s;
+			position: relative;
+			top: 0;
+			left: 0;
+		}
+		.box{
+			overflow: hidden;
+			height: 322px;
+			width: 1002px;
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			margin: auto;
+			box-shadow: -20px 20px 50px 0px rgba(0,0,0,0.3);
+		}
+		.box:hover .b .pic{
+			width: 90px;
+		}
+		.box .b .pic:hover{
+			width: 640px;
+		}
+		.b{
+			width: 9999px;
+		}
+		.font{
+			display: inline-block;
+			width: 622px;
+			height: 322px;
+			background:rgba(0,0,0,0.5);
+			position: absolute;
+			top: 295px;
+			left: 0;
+			color: white;
+			transition: all 0.5s;
+			font-family: '微软雅黑';
+			font-size:20px;
+			padding:0 10px 0 10px;
+		}
+		.box .b .pic .font:hover{
+			top: 0;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div class="b">
+			<div class="pic">
+				<img src="img1.jpg" alt="">
+				<div class="font">第一张<br><br>第一张第一张第一张第一张第一张第一张第一张第一张第一张第一张第一张第一张第一张第一张第一张第一张第一张第一张第一张第一张第一张第一张第一张第一张第一张第一张第一张</div>
+			</div>
+			<div class="pic">
+				<img src="img2.jpg" alt="">
+				<div class="font">第二张<br><br>第二张第二张第二张第二张第二张第二张第二张第二张第二张第二张第二张第二张第二张第二张第二张第二张第二张第二张第二张第二张第二张第二张第二张第二张第二张第二张第二张</div>
+			</div>
+			<div class="pic">
+				<img src="img3.jpg" alt="">
+				<div class="font">第三张<br><br>第三张第三张第三张第三张第三张第三张第三张第三张第三张第三张第三张第三张第三张第三张第三张第三张第三张第三张第三张第三张第三张第三张第三张第三张第三张第三张第三张</div>
+			</div>
+			<div class="pic">
+				<img src="img4.jpg" alt="">
+				<div class="font">第四张<br><br>第四张第四张第四张第四张第四张第四张第四张第四张第四张第四张第四张第四张第四张第四张第四张第四张第四张第四张第四张第四张第四张第四张第四张第四张第四张第四张第四张</div>
+			</div>
+			<div class="pic">	
+				<img src="img5.jpg" alt="">
+				<div class="font">第五张<br><br>第五张第五张第五张第五张第五张第五张第五张第五张第五张第五张第五张第五张第五张第五张第五张第五张第五张第五张第五张第五张第五张第五张第五张第五张第五张第五张第五张</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
